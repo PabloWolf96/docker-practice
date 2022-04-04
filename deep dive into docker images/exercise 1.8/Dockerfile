@@ -1,7 +1,6 @@
 FROM ubuntu:20.04
 WORKDIR /usr/src/app
-COPY script.sh .
-RUN chmod +x script.sh
-RUN apt-get update
-RUN apt-get -y install curl
-CMD ./script.sh
+RUN apt-get update && apt-get -y install curl
+COPY script.txt .
+RUN chmod +x script.txt
+ENTRYPOINT [ "./script.txt" ]
