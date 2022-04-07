@@ -1,0 +1,13 @@
+FROM ubuntu:20.04
+EXPOSE 5000
+WORKDIR /usr/src/app
+RUN apt-get update
+RUN apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
+RUN npm install -g serve
+COPY package.json .
+RUN npm install
+COPY . .
+CMD serve -s -l 5000 build
