@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  youtube-dl-ubuntu:
+    image: pablowolf96/youtube-dl:latest
+    build: .
+    volumes:
+      - .:/mydir
+    container_name: youtube-dl
