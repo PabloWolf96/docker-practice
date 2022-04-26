@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  redis:
+    image: redis
+    restart: unless-stopped
+    container_name: redis-cache
+  backend:
+    build:
+      context: ./example-backend
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    ports:
+      - 8080:8080
+    container_name: backend-app
+    environment:
+      - REDIS_HOST=redis
+  frontend:
+    build: 
+      context: ./example-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    container_name: frontend-app
